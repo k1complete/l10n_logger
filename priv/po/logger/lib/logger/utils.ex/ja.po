@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: l 10n_logger\n"
+"PO-Revision-Date: 2016-03-27 18:17+0900\n"
+"Last-Translator: 小田 照敬 <EMAIL@ADDRESS>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANSLATORS: def Logger.Utils.format_time(arg)
+#: lib/logger/utils.ex:247
+msgid "Formats time as chardata.\n"
+msgstr ""
+
+#. TRANSLATORS: def Logger.Utils.format_date(arg)
+#: lib/logger/utils.ex:254
+msgid "Formats date as chardata.\n"
+msgstr ""
+
+#. TRANSLATORS: def Logger.Utils.inspect(format, args, truncate, opts \\ %Inspect.Opts{})
+#: lib/logger/utils.ex:80
+msgid ""
+"Receives a format string and arguments and replace `~p`,\n"
+"`~P`, `~w` and `~W` by its inspected variants.\n"
+msgstr ""
+
+#. TRANSLATORS: def Logger.Utils.truncate(chardata, n)
+#: lib/logger/utils.ex:4
+msgid ""
+"Truncates a char data into n bytes.\n"
+"\n"
+"There is a chance we truncate in the middle of a grapheme\n"
+"cluster but we never truncate in the middle of a binary\n"
+"codepoint. For this reason, truncation is not exact.\n"
+msgstr ""
+
+#. TRANSLATORS: def Logger.Utils.timestamp(utc_log?)
+#: lib/logger/utils.ex:234
+msgid "Returns a timestamp that includes milliseconds.\n"
+msgstr ""
