@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: l 10n_logger\n"
-"PO-Revision-Date: 2016-03-27 18:17+0900\n"
+"PO-Revision-Date: 2016-04-03 12:28+0900\n"
 "Last-Translator: 小田 照敬 <EMAIL@ADDRESS>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -10,10 +10,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANSLATORS: def Logger.Watcher.watch(mod, handler, args)
+#: lib/logger/watcher.ex:34
+msgid "Watches the given handler as part of the watcher supervision tree.\n"
+msgstr ""
+"観測者スーパビジョンツリーの一部として与えられたハンドラを\n"
+"見ます。\n"
+
+#. TRANSLATORS: def Logger.Watcher.unwatch(mod, handler)
+#: lib/logger/watcher.ex:27
+msgid "Removes the given handler.\n"
+msgstr "与えられたハンドラを取り除きます。\n"
+
 #. TRANSLATORS: def Logger.Watcher.start_link(m, f, a)
 #: lib/logger/watcher.ex:8
 msgid "Starts the watcher supervisor.\n"
-msgstr ""
+msgstr "観測者スーパバイザを開始します。\n"
 
 #. TRANSLATORS: def Logger.Watcher.watcher(mod, handler, args, style \\ :monitor)
 #: lib/logger/watcher.ex:46
@@ -23,13 +35,7 @@ msgid ""
 "This is useful when there is a need to start a handler\n"
 "outside of the handler supervision tree.\n"
 msgstr ""
-
-#. TRANSLATORS: def Logger.Watcher.watch(mod, handler, args)
-#: lib/logger/watcher.ex:34
-msgid "Watches the given handler as part of the watcher supervision tree.\n"
-msgstr ""
-
-#. TRANSLATORS: def Logger.Watcher.unwatch(mod, handler)
-#: lib/logger/watcher.ex:27
-msgid "Removes the given handler.\n"
-msgstr ""
+"観測者サーバを開始します。\n"
+"\n"
+"ハンドラスーパビジョンツリーの外側でハンドラを開始\n"
+"する必要があるとき、役に立ちます。\n"

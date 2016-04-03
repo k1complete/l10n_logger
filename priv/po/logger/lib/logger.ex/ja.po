@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: l 10n_logger\n"
-"PO-Revision-Date: 2016-03-28 17:53+0900\n"
+"PO-Revision-Date: 2016-04-03 12:40+0900\n"
 "Last-Translator: 小田 照敬 <EMAIL@ADDRESS>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANSLATORS: def Logger.compare_levels(level, level)
-#: lib/logger.ex:338
+#: lib/logger.ex:347
 msgid ""
 "Compares log levels.\n"
 "\n"
@@ -24,7 +24,7 @@ msgstr ""
 "`:lt`か`:eq`か`:gt`を返します。\n"
 
 #. TRANSLATORS: defmacro Logger.error(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:507
+#: lib/logger.ex:516
 msgid ""
 "Logs an error.\n"
 "\n"
@@ -47,7 +47,7 @@ msgstr ""
 "\n"
 
 #. TRANSLATORS: def Logger.remove_backend(backend, opts \\ [])
-#: lib/logger.ex:402
+#: lib/logger.ex:411
 msgid ""
 "Removes a backend.\n"
 "\n"
@@ -66,19 +66,19 @@ msgstr ""
 "    `error_logger`に送られ、処理されるることを保証します。\n"
 
 #. TRANSLATORS: def Logger.remove_translator(translator)
-#: lib/logger.ex:424
+#: lib/logger.ex:433
 msgid "Removes a translator.\n"
 msgstr "translatorを取り除きます。\n"
 
 #. TRANSLATORS: def Logger.reset_metadata(keywords \\ [])
-#: lib/logger.ex:298
+#: lib/logger.ex:307
 msgid "Resets the current process metadata to the the given keyword list.\n"
 msgstr ""
 "与えられたキーワードリストで、現在のプロセスのメタデータを\n"
 "リセットします。\n"
 
 #. TRANSLATORS: def Logger.flush()
-#: lib/logger.ex:367
+#: lib/logger.ex:376
 msgid ""
 "Flushes the Logger.\n"
 "\n"
@@ -93,7 +93,7 @@ msgstr ""
 "プロダクションコードでは呼ばれるべきではありません。\n"
 
 #. TRANSLATORS: def Logger.bare_log(level, chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:442
+#: lib/logger.ex:451
 msgid ""
 "Logs a message dynamically.\n"
 "\n"
@@ -106,7 +106,7 @@ msgstr ""
 "この関数を使ってください。\n"
 
 #. TRANSLATORS: def Logger.enable(pid)
-#: lib/logger.ex:307
+#: lib/logger.ex:316
 msgid ""
 "Enables logging for the current process.\n"
 "\n"
@@ -117,7 +117,7 @@ msgstr ""
 "現在はprocessはself()のみ受け付けます。\n"
 
 #. TRANSLATORS: defmacro Logger.info(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:492
+#: lib/logger.ex:501
 msgid ""
 "Logs some info.\n"
 "\n"
@@ -140,7 +140,7 @@ msgstr ""
 "\n"
 
 #. TRANSLATORS: def Logger.add_backend(backend, opts \\ [])
-#: lib/logger.ex:381
+#: lib/logger.ex:390
 msgid ""
 "Adds a new backend.\n"
 "\n"
@@ -161,72 +161,52 @@ msgstr ""
 "\n"
 
 #. TRANSLATORS: def Logger.metadata(keywords)
-#: lib/logger.ex:277
+#: lib/logger.ex:286
 msgid "Adds the given keyword list to the current process metadata.\n"
 msgstr ""
 "与えれらたキーワードリストを現在のプロセスのメタデータに\n"
 "追加します。\n"
 
-#. TRANSLATORS: def Logger.disable(pid)
-#: lib/logger.ex:317
-msgid ""
-"Disables logging for the current process.\n"
-"\n"
-"Currently the only accepted process is self().\n"
-msgstr ""
-"現在のプロセスのロギングを無効にします。\n"
-"\n"
-"現在はプロセスはself()のみ受け付けます。\n"
+#. TRANSLATORS: def Logger.add_translator(translator)
+#: lib/logger.ex:426
+msgid "Adds a new translator.\n"
+msgstr "新しいtranslatorを追加します。\n"
 
-#. TRANSLATORS: def Logger.configure_backend(backend, options)
-#: lib/logger.ex:431
+#. TRANSLATORS: def Logger.configure(options)
+#: lib/logger.ex:364
 msgid ""
-"Configures the given backend.\n"
+"Configures the logger.\n"
 "\n"
-"The backend needs to be started and running in order to\n"
-"be configured at runtime.\n"
+"See the \"Runtime Configuration\" section in `Logger` module\n"
+"documentation for the available options.\n"
 msgstr ""
-"与えられたbackendを構成します。\n"
+"loggerを構成します。\n"
 "\n"
-"実行時に構成するためにbackendはスタートしていて、動いている\n"
-"必要があります。\n"
+"有効なオプションについては、`Logger`モジュールドキュメント\n"
+"\"Runtime Configuration\"セクションを参照してください。\n"
 
-#. TRANSLATORS: defmacro Logger.debug(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:522
+#. TRANSLATORS: defmacro Logger.log(level, chardata_or_fn, metadata \\ [])
+#: lib/logger.ex:546
 msgid ""
-"Logs a debug message.\n"
+"Logs a message.\n"
 "\n"
 "Returns the atom `:ok` or an `{:error, reason}` tuple.\n"
 "\n"
-"## Examples\n"
-"\n"
-"    Logger.debug \"hello?\"\n"
-"    Logger.debug fn -> \"expensive to calculate debug\" end\n"
-"\n"
+"Developers should use the macros `Logger.debug/2`,\n"
+"`Logger.warn/2`, `Logger.info/2` or `Logger.error/2` instead\n"
+"of this macro as they can automatically eliminate\n"
+"the Logger call altogether at compile time if desired.\n"
 msgstr ""
-"デバッグメッセージをログします。\n"
+"メッセージをログします。\n"
 "\n"
-"アトム`:ok`か`{:error, reason}`タプルを返します。\n"
-"\n"
-"## Examples\n"
-"\n"
-"    Logger.debug \"hello?\"\n"
-"    Logger.debug fn -> \"expensive to calculate debug\" end\n"
-"\n"
-
-#. TRANSLATORS: def Logger.level()
-#: lib/logger.ex:327
-msgid ""
-"Retrieves the Logger level.\n"
-"\n"
-"The Logger level can be changed via `configure/1`.\n"
-msgstr ""
-"Loggerのlevelを取り出します。\n"
-"\n"
-"Loggerレベル`configure/1`を通じて変更することができます。\n"
+"アトム`:ok`か`{:error, reason}`タプルを返します。必要に応\n"
+"じてコンパイル時に完全にLogger呼出しを自動的に取り除くこと\n"
+"ができるので、このマクロの代わりに、開発者は\n"
+"`Logger.debug/2`、`Logger.warn/2`、`Logger.info/2`あるいは\n"
+"`Logger.error/2`マクロを使うべきです。\n"
 
 #. TRANSLATORS: defmacro Logger.warn(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:477
+#: lib/logger.ex:486
 msgid ""
 "Logs a warning.\n"
 "\n"
@@ -247,24 +227,6 @@ msgstr ""
 "    Logger.warn \"knob turned too far to the right\"\n"
 "    Logger.warn fn -> \"expensive to calculate warning\" end\n"
 "\n"
-
-#. TRANSLATORS: def Logger.add_translator(translator)
-#: lib/logger.ex:417
-msgid "Adds a new translator.\n"
-msgstr "新しいtranslatorを追加します。\n"
-
-#. TRANSLATORS: def Logger.configure(options)
-#: lib/logger.ex:355
-msgid ""
-"Configures the logger.\n"
-"\n"
-"See the \"Runtime Configuration\" section in `Logger` module\n"
-"documentation for the available options.\n"
-msgstr ""
-"loggerを構成します。\n"
-"\n"
-"有効なオプションについては、`Logger`モジュールドキュメント\n"
-"\"Runtime Configuration\"セクションを参照してください。\n"
 
 #. TRANSLATORS: Elixir.Logger Summary
 #: lib/logger.ex:2
@@ -325,6 +287,16 @@ msgid ""
 "    Logger call will be completely removed at compile time, accruing\n"
 "    no overhead at runtime. Defaults to `:debug` and only\n"
 "    applies to the `Logger.debug/2`, `Logger.info/2`, etc style of calls.\n"
+"    Note that in calls are removed from the AST at compilation time, the\n"
+"    passed arguments are never evaluated, so any function call that occurs "
+"in\n"
+"    these arguments is never executed. As a consequence, avoid code that "
+"looks\n"
+"    like `Logger.debug(\"Cleanup: #{perform_cleanup()}\")` as in the "
+"example\n"
+"    `perform_cleanup/0` won't be executed if the `:"
+"compile_time_purge_level`\n"
+"    is `:info` or higher.\n"
 "\n"
 "  * `:compile_time_application` - sets the `:application` metadata value\n"
 "    to the configured value at compilation time. This configuration is\n"
@@ -347,7 +319,11 @@ msgid ""
 "  * `:level` - the logging level. Attempting to log any message\n"
 "    with severity less than the configured level will simply\n"
 "    cause the message to be ignored. Keep in mind that each backend\n"
-"    may have its specific level, too.\n"
+"    may have its specific level, too. Note that, unlike what happens with "
+"the\n"
+"    `:compile_time_purge_level` option, the argument passed to `Logger` "
+"calls\n"
+"    is evaluated even if the level of the call is lower than `:level`.\n"
 "\n"
 "  * `:utc_log` - when `true`, uses UTC in logs. By default it uses\n"
 "    local time (i.e. it defaults to `false`).\n"
@@ -355,6 +331,7 @@ msgid ""
 "  * `:truncate` - the maximum message size to be logged. Defaults\n"
 "    to 8192 bytes. Note this configuration is approximate. Truncated\n"
 "    messages will have `\" (truncated)\"` at the end.\n"
+"    The atom `:infinity` can be passed to disable this behavior.\n"
 "\n"
 "  * `:sync_threshold` - if the Logger manager has more than\n"
 "    `sync_threshold` messages in its queue, Logger will change\n"
@@ -584,12 +561,16 @@ msgstr ""
 "    `[:console]`です。詳細は\"Backends\"セクションを参照し\n"
 "    てください。\n"
 "\n"
-"  * `:compile_time_purge_level` - 構成された値より低い\n"
-"    logレベルをコンパイル時に全てパージします。これは、\n"
-"    Logger呼出しをコンパイル時に完全に取り除き、実行時の\n"
-"    オーバヘッドが無いことを意味します。デフォルトは\n"
-"    `:debug`で`Logger.debug/2`、`Logger.info/2`などの呼出\n"
-"    しスタイルだけが適用されます。\n"
+"  * `:compile_time_purge_level` - 構成された値より低いlogレベルをコンパ\n"
+"    イル時に全てパージします。これは、Logger呼出しをコンパイル時に完全\n"
+"    に取り除き、実行時のオーバヘッドが無いことを意味します。デフォルト\n"
+"    は`:debug`で`Logger.debug/2`、`Logger.info/2`などの呼出しスタイルだ\n"
+"    けが適用されます。コンパイル時にASTからこれらの呼出しが削除されるの\n"
+"    で、渡された引数は決して評価されません。したがって引数の中の任意の\n"
+"    関数呼びだしも決して実行されません。結果として、\n"
+"    `Logger.debug(\"Cleanup: #{perform_cleanup()}\")`のような例では、\n"
+"    `:compile_time_purge_level`が、`:info`かより高いなら、\n"
+"    `perform_cleanup/0`は実行されません。\n"
 "\n"
 "  * `:compile_time_application` - コンパイル時に構成され\n"
 "    た値を`:application`メタデータにセットします。\n"
@@ -615,6 +596,9 @@ msgstr ""
 "    レベルのメッセージはログしようとしても単に無視されます。\n"
 "    それぞれのbackendもそれ自身の特定のレベルを持っているか\n"
 "    もしれないことに注意してください。\n"
+"    `:compile_time_purge_level`オプションと違って、\n"
+"    `Logger`呼出しに渡された引数は呼出しのレベルが`:level`よ\n"
+"    り低くても評価されます。\n"
 "\n"
 "  * `:utc_log` - `true`の時, UTCでログをとります。デフォルトでは\n"
 "    ローカル時刻です(つまり、デフォルトは`false`です)。\n"
@@ -693,7 +677,6 @@ msgstr ""
 "開発者は(下記で説明されるオプションで)自身のbackendを実装するかも\n"
 "しれません。\n"
 "\n"
-"\n"
 "最初のbackendは、Loggerアプリケーションが開始されるまえにセッ\n"
 "トされなければならない`:backends`コンフィグレーションにより\n"
 "ロードされます。\n"
@@ -708,8 +691,8 @@ msgstr ""
 "    にフィルタされることに注意してください\n"
 "\n"
 "  * `:format` - ログをプリントするときに使うメッセージフォー\n"
-"    マットです。デフォルトは: `\"$time $metadata[$level]\n"
-"    $levelpad$message\\n\"`\n"
+"    マットです。デフォルトは:\n"
+"    `\"$time $metadata[$level] $levelpad$message\\n\"`\n"
 "\n"
 "  * `:metadata` - `$metadata`によりでプリントされるメタデー\n"
 "    タです。デフォルトは空のリストです(メタデータなし)\n"
@@ -808,27 +791,65 @@ msgstr ""
 "ンをどのように処理するかの例として、\n"
 "`Logger.Backends.Console`の実装をチェックしてください。\n"
 
-#. TRANSLATORS: defmacro Logger.log(level, chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:537
+#. TRANSLATORS: def Logger.disable(pid)
+#: lib/logger.ex:326
 msgid ""
-"Logs a message.\n"
+"Disables logging for the current process.\n"
+"\n"
+"Currently the only accepted process is self().\n"
+msgstr ""
+"現在のプロセスのロギングを無効にします。\n"
+"\n"
+"現在はプロセスはself()のみ受け付けます。\n"
+
+#. TRANSLATORS: def Logger.configure_backend(backend, options)
+#: lib/logger.ex:440
+msgid ""
+"Configures the given backend.\n"
+"\n"
+"The backend needs to be started and running in order to\n"
+"be configured at runtime.\n"
+msgstr ""
+"与えられたbackendを構成します。\n"
+"\n"
+"実行時に構成するためにbackendはスタートしていて、動いている\n"
+"必要があります。\n"
+
+#. TRANSLATORS: defmacro Logger.debug(chardata_or_fn, metadata \\ [])
+#: lib/logger.ex:531
+msgid ""
+"Logs a debug message.\n"
 "\n"
 "Returns the atom `:ok` or an `{:error, reason}` tuple.\n"
 "\n"
-"Developers should use the macros `Logger.debug/2`,\n"
-"`Logger.warn/2`, `Logger.info/2` or `Logger.error/2` instead\n"
-"of this macro as they can automatically eliminate\n"
-"the Logger call altogether at compile time if desired.\n"
-msgstr ""
-"メッセージをログします。\n"
+"## Examples\n"
 "\n"
-"アトム`:ok`か`{:error, reason}`タプルを返します。必要に応\n"
-"じてコンパイル時に完全にLogger呼出しを自動的に取り除くこと\n"
-"ができるので、このマクロの代わりに、開発者は\n"
-"`Logger.debug/2`、`Logger.warn/2`、`Logger.info/2`あるいは\n"
-"`Logger.error/2`マクロを使うべきです。\n"
+"    Logger.debug \"hello?\"\n"
+"    Logger.debug fn -> \"expensive to calculate debug\" end\n"
+"\n"
+msgstr ""
+"デバッグメッセージをログします。\n"
+"\n"
+"アトム`:ok`か`{:error, reason}`タプルを返します。\n"
+"\n"
+"## Examples\n"
+"\n"
+"    Logger.debug \"hello?\"\n"
+"    Logger.debug fn -> \"expensive to calculate debug\" end\n"
+"\n"
+
+#. TRANSLATORS: def Logger.level()
+#: lib/logger.ex:336
+msgid ""
+"Retrieves the Logger level.\n"
+"\n"
+"The Logger level can be changed via `configure/1`.\n"
+msgstr ""
+"Loggerのlevelを取り出します。\n"
+"\n"
+"Loggerレベル`configure/1`を通じて変更することができます。\n"
 
 #. TRANSLATORS: def Logger.metadata()
-#: lib/logger.ex:291
+#: lib/logger.ex:300
 msgid "Reads the current process metadata.\n"
 msgstr "現在のプロセスのメタデータを読み出します。\n"

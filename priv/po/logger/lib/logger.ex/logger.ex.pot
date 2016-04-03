@@ -1,5 +1,5 @@
 #. TRANSLATORS: def Logger.compare_levels(level, level)
-#: lib/logger.ex:338 
+#: lib/logger.ex:347 
 msgid ""
 "Compares log levels.\n"
 "\n"
@@ -7,7 +7,7 @@ msgid ""
 "against `right` and returns `:lt`, `:eq` or `:gt`.\n"
 msgstr ""
 #. TRANSLATORS: defmacro Logger.error(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:507 
+#: lib/logger.ex:516 
 msgid ""
 "Logs an error.\n"
 "\n"
@@ -20,7 +20,7 @@ msgid ""
 "\n"
 msgstr ""
 #. TRANSLATORS: def Logger.remove_backend(backend, opts \\ [])
-#: lib/logger.ex:402 
+#: lib/logger.ex:411 
 msgid ""
 "Removes a backend.\n"
 "\n"
@@ -31,17 +31,17 @@ msgid ""
 "    the backend is removed\n"
 msgstr ""
 #. TRANSLATORS: def Logger.remove_translator(translator)
-#: lib/logger.ex:424 
+#: lib/logger.ex:433 
 msgid ""
 "Removes a translator.\n"
 msgstr ""
 #. TRANSLATORS: def Logger.reset_metadata(keywords \\ [])
-#: lib/logger.ex:298 
+#: lib/logger.ex:307 
 msgid ""
 "Resets the current process metadata to the the given keyword list.\n"
 msgstr ""
 #. TRANSLATORS: def Logger.flush()
-#: lib/logger.ex:367 
+#: lib/logger.ex:376 
 msgid ""
 "Flushes the Logger.\n"
 "\n"
@@ -50,7 +50,7 @@ msgid ""
 "for testing and it should not be called in production code.\n"
 msgstr ""
 #. TRANSLATORS: def Logger.bare_log(level, chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:442 
+#: lib/logger.ex:451 
 msgid ""
 "Logs a message dynamically.\n"
 "\n"
@@ -58,14 +58,14 @@ msgid ""
 "explicitly avoid embedding metadata.\n"
 msgstr ""
 #. TRANSLATORS: def Logger.enable(pid)
-#: lib/logger.ex:307 
+#: lib/logger.ex:316 
 msgid ""
 "Enables logging for the current process.\n"
 "\n"
 "Currently the only accepted process is self().\n"
 msgstr ""
 #. TRANSLATORS: defmacro Logger.info(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:492 
+#: lib/logger.ex:501 
 msgid ""
 "Logs some info.\n"
 "\n"
@@ -78,7 +78,7 @@ msgid ""
 "\n"
 msgstr ""
 #. TRANSLATORS: def Logger.add_backend(backend, opts \\ [])
-#: lib/logger.ex:381 
+#: lib/logger.ex:390 
 msgid ""
 "Adds a new backend.\n"
 "\n"
@@ -90,47 +90,37 @@ msgid ""
 "\n"
 msgstr ""
 #. TRANSLATORS: def Logger.metadata(keywords)
-#: lib/logger.ex:277 
+#: lib/logger.ex:286 
 msgid ""
 "Adds the given keyword list to the current process metadata.\n"
 msgstr ""
-#. TRANSLATORS: def Logger.disable(pid)
-#: lib/logger.ex:317 
+#. TRANSLATORS: def Logger.add_translator(translator)
+#: lib/logger.ex:426 
 msgid ""
-"Disables logging for the current process.\n"
-"\n"
-"Currently the only accepted process is self().\n"
+"Adds a new translator.\n"
 msgstr ""
-#. TRANSLATORS: def Logger.configure_backend(backend, options)
-#: lib/logger.ex:431 
+#. TRANSLATORS: def Logger.configure(options)
+#: lib/logger.ex:364 
 msgid ""
-"Configures the given backend.\n"
+"Configures the logger.\n"
 "\n"
-"The backend needs to be started and running in order to\n"
-"be configured at runtime.\n"
+"See the \"Runtime Configuration\" section in `Logger` module\n"
+"documentation for the available options.\n"
 msgstr ""
-#. TRANSLATORS: defmacro Logger.debug(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:522 
+#. TRANSLATORS: defmacro Logger.log(level, chardata_or_fn, metadata \\ [])
+#: lib/logger.ex:546 
 msgid ""
-"Logs a debug message.\n"
+"Logs a message.\n"
 "\n"
 "Returns the atom `:ok` or an `{:error, reason}` tuple.\n"
 "\n"
-"## Examples\n"
-"\n"
-"    Logger.debug \"hello?\"\n"
-"    Logger.debug fn -> \"expensive to calculate debug\" end\n"
-"\n"
-msgstr ""
-#. TRANSLATORS: def Logger.level()
-#: lib/logger.ex:327 
-msgid ""
-"Retrieves the Logger level.\n"
-"\n"
-"The Logger level can be changed via `configure/1`.\n"
+"Developers should use the macros `Logger.debug/2`,\n"
+"`Logger.warn/2`, `Logger.info/2` or `Logger.error/2` instead\n"
+"of this macro as they can automatically eliminate\n"
+"the Logger call altogether at compile time if desired.\n"
 msgstr ""
 #. TRANSLATORS: defmacro Logger.warn(chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:477 
+#: lib/logger.ex:486 
 msgid ""
 "Logs a warning.\n"
 "\n"
@@ -141,19 +131,6 @@ msgid ""
 "    Logger.warn \"knob turned too far to the right\"\n"
 "    Logger.warn fn -> \"expensive to calculate warning\" end\n"
 "\n"
-msgstr ""
-#. TRANSLATORS: def Logger.add_translator(translator)
-#: lib/logger.ex:417 
-msgid ""
-"Adds a new translator.\n"
-msgstr ""
-#. TRANSLATORS: def Logger.configure(options)
-#: lib/logger.ex:355 
-msgid ""
-"Configures the logger.\n"
-"\n"
-"See the \"Runtime Configuration\" section in `Logger` module\n"
-"documentation for the available options.\n"
 msgstr ""
 #. TRANSLATORS: Elixir.Logger Summary
 #: lib/logger.ex:2 
@@ -214,6 +191,12 @@ msgid ""
 "    Logger call will be completely removed at compile time, accruing\n"
 "    no overhead at runtime. Defaults to `:debug` and only\n"
 "    applies to the `Logger.debug/2`, `Logger.info/2`, etc style of calls.\n"
+"    Note that in calls are removed from the AST at compilation time, the\n"
+"    passed arguments are never evaluated, so any function call that occurs in\n"
+"    these arguments is never executed. As a consequence, avoid code that looks\n"
+"    like `Logger.debug(\"Cleanup: #{perform_cleanup()}\")` as in the example\n"
+"    `perform_cleanup/0` won't be executed if the `:compile_time_purge_level`\n"
+"    is `:info` or higher.\n"
 "\n"
 "  * `:compile_time_application` - sets the `:application` metadata value\n"
 "    to the configured value at compilation time. This configuration is\n"
@@ -236,7 +219,9 @@ msgid ""
 "  * `:level` - the logging level. Attempting to log any message\n"
 "    with severity less than the configured level will simply\n"
 "    cause the message to be ignored. Keep in mind that each backend\n"
-"    may have its specific level, too.\n"
+"    may have its specific level, too. Note that, unlike what happens with the\n"
+"    `:compile_time_purge_level` option, the argument passed to `Logger` calls\n"
+"    is evaluated even if the level of the call is lower than `:level`.\n"
 "\n"
 "  * `:utc_log` - when `true`, uses UTC in logs. By default it uses\n"
 "    local time (i.e. it defaults to `false`).\n"
@@ -244,6 +229,7 @@ msgid ""
 "  * `:truncate` - the maximum message size to be logged. Defaults\n"
 "    to 8192 bytes. Note this configuration is approximate. Truncated\n"
 "    messages will have `\" (truncated)\"` at the end.\n"
+"    The atom `:infinity` can be passed to disable this behavior.\n"
 "\n"
 "  * `:sync_threshold` - if the Logger manager has more than\n"
 "    `sync_threshold` messages in its queue, Logger will change\n"
@@ -419,20 +405,43 @@ msgid ""
 "examples on how to handle the recommendations in this section\n"
 "and how to process the existing options.\n"
 msgstr ""
-#. TRANSLATORS: defmacro Logger.log(level, chardata_or_fn, metadata \\ [])
-#: lib/logger.ex:537 
+#. TRANSLATORS: def Logger.disable(pid)
+#: lib/logger.ex:326 
 msgid ""
-"Logs a message.\n"
+"Disables logging for the current process.\n"
+"\n"
+"Currently the only accepted process is self().\n"
+msgstr ""
+#. TRANSLATORS: def Logger.configure_backend(backend, options)
+#: lib/logger.ex:440 
+msgid ""
+"Configures the given backend.\n"
+"\n"
+"The backend needs to be started and running in order to\n"
+"be configured at runtime.\n"
+msgstr ""
+#. TRANSLATORS: defmacro Logger.debug(chardata_or_fn, metadata \\ [])
+#: lib/logger.ex:531 
+msgid ""
+"Logs a debug message.\n"
 "\n"
 "Returns the atom `:ok` or an `{:error, reason}` tuple.\n"
 "\n"
-"Developers should use the macros `Logger.debug/2`,\n"
-"`Logger.warn/2`, `Logger.info/2` or `Logger.error/2` instead\n"
-"of this macro as they can automatically eliminate\n"
-"the Logger call altogether at compile time if desired.\n"
+"## Examples\n"
+"\n"
+"    Logger.debug \"hello?\"\n"
+"    Logger.debug fn -> \"expensive to calculate debug\" end\n"
+"\n"
+msgstr ""
+#. TRANSLATORS: def Logger.level()
+#: lib/logger.ex:336 
+msgid ""
+"Retrieves the Logger level.\n"
+"\n"
+"The Logger level can be changed via `configure/1`.\n"
 msgstr ""
 #. TRANSLATORS: def Logger.metadata()
-#: lib/logger.ex:291 
+#: lib/logger.ex:300 
 msgid ""
 "Reads the current process metadata.\n"
 msgstr ""
